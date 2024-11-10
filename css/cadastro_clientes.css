@@ -1,0 +1,75 @@
+/* Centraliza e define o tamanho do formulário */
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #4e3427;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4e3427;
+    text-align: left;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4e3427;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #3e291f;
+}
+
+/* Estilos para o alerta de mensagem */
+.alert {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #4caf50; /* Verde para sucesso */
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+
+/* Estiliza o botão de recuperação de senha */
+.btn-recuperar-senha {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #fd0404;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-recuperar-senha:hover {
+    background-color: #fa5c5c;
+}

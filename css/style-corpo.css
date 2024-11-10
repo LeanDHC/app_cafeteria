@@ -1,0 +1,46 @@
+.conteudo_interior{
+    background: url('../images/index_images/Sem\ Título-1.jpg') no-repeat  ;
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+    height: 100%; /* Garante que o body ocupe 100% da altura da tela */
+}
+
+#container {
+    width: 80%; /* O container ocupa 80% da largura */
+    max-width: 900px; /* Limita a largura do container a 900px */
+    margin: 0 auto; /* Centraliza a div.container horizontalmente */
+    text-align: center; /* Centraliza o texto dentro da div */
+    box-sizing: border-box; /* Inclui o padding na largura e altura */
+}
+
+/* Estilo das barras */
+.barra {
+    height: 5px; /* Altura da barra */
+    background-color: #4e3427; /* Cor das barras */
+    margin: 20px 0; /* Espaçamento entre o título e as barras */
+}
+
+.barra.cima {
+    margin-bottom: 10px; /* Barra de cima com espaço menor */
+}
+
+.barra.baixo {
+    margin-top: 10px; /* Barra de baixo com espaço menor */
+}
+
+/* Estilo do título */
+.titulo {
+    font-size: 2.5em; /* Tamanho do título */
+    color: #4e3427; /* Cor do texto */
+    font-weight: bold;
+    margin: 0; /* Remove margens automáticas */
+}
+.sobre-nos {
+    width: 80%; /* O mesmo width da div.container */
+    max-width: 900px; /* Limita a largura da seção a 900px */
+    text-align: justify; /* Justifica o texto */
+    font-size: 1.2em; /* Tamanho do texto */
+    line-height: 1.6; /* Espaçamento entre as linhas */
+    color: #4e3427; /* Cor do texto */
+    margin: 30px auto; /* Centraliza a div sobre-nos e cria espaço acima */
+    padding: 0 20px; /* Espaçamento nas laterais */
+}

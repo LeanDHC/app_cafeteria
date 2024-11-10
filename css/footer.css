@@ -1,0 +1,29 @@
+footer {
+    background-color: #333; /* Cor de fundo do rodapé */
+    color: white; /* Cor do texto */
+    padding: 20px 0; /* Espaçamento no rodapé */
+    width: 100%; /* Ocupa toda a largura */
+    
+    bottom: 0;
+}
+
+/* Estilo para o container do rodapé */
+.footer-container {
+    display: flex;
+    justify-content: space-between; /* Espaço entre os itens */
+    align-items: center; /* Alinha verticalmente os itens */
+    max-width: 900px; /* Limita a largura do conteúdo */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 0 20px; /* Espaçamento nas laterais */
+}
+
+/* Estilo para a parte esquerda do rodapé */
+.footer-left {
+    font-size: 1em;
+}
+
+/* Estilo para a parte direita do rodapé */
+.footer-right {
+    font-size: 1em;
+    text-align: right;
+}

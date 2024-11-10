@@ -1,0 +1,70 @@
+/* Tabela */
+.cardapio-tabela {
+    width: 50%;        /* A tabela ocupará 50% da largura do seu container */
+    border-collapse: collapse;
+    margin: 0 auto;     /* Centraliza a tabela */
+}
+
+.cardapio-tabela th, .cardapio-tabela td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+}
+
+.cardapio-tabela th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.produto-imagem {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cardapio-tabela td {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* Estilo para o preço */
+.cardapio-tabela td:last-child {
+    font-weight: bold;
+    color: #e74c3c;
+    white-space: nowrap;  /* Impede que o preço e "R$" quebrem para a linha seguinte */
+}
+
+/* Alinha o conteúdo da célula com o preço e o botão */
+.preco-container {
+    display: flex;
+    flex-direction: column; /* Organiza preço e botão em coluna */
+    align-items: center;    /* Centraliza os itens horizontalmente */
+}
+
+.preco {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3e2723;
+}
+
+.adicionar-btn {
+    background-color: #4e3427; /* Cor de fundo do botão */
+    color: white;             /* Cor da fonte */
+    border: none;             /* Remove a borda do botão */
+    padding: 10px 20px;       /* Adiciona espaçamento ao redor do texto */
+    cursor: pointer;         /* Mostra o cursor como uma mãozinha quando passar o mouse sobre o botão */
+    border-radius: 5px;       /* Cantos arredondados */
+    font-size: 1em;           /* Tamanho da fonte */
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    margin-top: 10px;         /* Dá espaçamento entre o preço e o botão */
+}
+
+.adicionar-btn:hover {
+    background-color: #3e2723; /* Cor de fundo ao passar o mouse */
+}
+
+.cardapio-tabela tr:hover {
+    background-color: #f9f9f9;
+}
