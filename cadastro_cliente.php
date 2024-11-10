@@ -24,19 +24,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':senha', $senha);
         $stmt->bindParam(':telefone', $telefone);
         $stmt->bindParam(':endereco', $endereco);
+
         if ($stmt->execute()) {
             $mensagem = "Cadastro realizado com sucesso!";
         } else {
             $mensagem = "Erro ao cadastrar. Tente novamente.";
         }
     } catch (PDOException $e) {
-        if ($e->getCode() == 23000) {
+          // Verifica se o erro é de chave duplicada para o email
+          if ($e->getCode() == 23000) {
             $mensagem = "Email já cadastrado!";
-            // Exibe o botão de recuperação de senha
-            $mensagem .= '<br><a href="recuperar_senha.php" class="btn-recuperar-senha">Recuperar Senha</a>';
         } else {
+            // Outro erro (caso queira capturar para debug)
             $mensagem = "Erro ao cadastrar: " . $e->getMessage();
         }
+        
     }
     
 }
