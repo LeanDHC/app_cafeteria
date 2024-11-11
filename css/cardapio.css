@@ -1,4 +1,4 @@
-/* Tabela */
+
 .cardapio-tabela {
     width: 50%;        /* A tabela ocupará 50% da largura do seu container */
     border-collapse: collapse;
@@ -67,4 +67,4 @@
 
 .cardapio-tabela tr:hover {
     background-color: #f9f9f9;
-}
+} 

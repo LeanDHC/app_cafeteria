@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 ?>
 <div class="container">
         <div class="parte-1"></div>
@@ -33,7 +33,7 @@ session_start();
                 </div>
                 <div class="item">
                     <img src="../images/index_images/carrinho_compra.png" alt="Imagem 2">
-                    <h3><a href="#">Carrinho</a></h3>
+                    <h3><a href="carrinho.php">Carrinho</a></h3>
                 </div>
             </div>
         </div>

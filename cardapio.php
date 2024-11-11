@@ -1,7 +1,19 @@
 <?php
-include './includes/db.php';
-// Consultar todos os produtos
-$stmt = $pdo->query("SELECT * FROM produtos");
+session_start();
+require_once 'includes/db.php'; // Conexão com o banco de dados
+
+// Verifica se o cliente está logado
+if (!isset($_SESSION['id_cliente'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$id_cliente = $_SESSION['id_cliente'];
+
+// Buscar os produtos do cardápio
+$query = "SELECT * FROM produtos";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -26,38 +38,31 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </header>
 
-    <div class="conteudo_interior">
-         <div id="container">
-            <div class="barra cima"></div>
-            <h1 class="titulo">Destaques da casa</h1>
-            <div class="barra baixo"></div>
-    </div>
-    <!-- Tabela para exibir os produtos -->
     <table class="cardapio-tabela">
-            
-            <tbody>
-                <?php foreach ($produtos as $produto): ?>
-                    <tr>
-                        <!-- Exibir imagem do produto -->
-                        <td><img src="<?= $produto['imagem_url']; ?>" alt="<?= $produto['nome']; ?>" class="produto-imagem"></td>
-                        
-                        <!-- Exibir descrição do produto -->
-                        <td><?= $produto['descricao']; ?></td>
-                        
-                        <!-- Exibir preço do produto -->
-                        <td>
-            <div class="preco-container">
-                <span class="preco">R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></span>
-                <button class="adicionar-btn">Adicionar</button>
-            </div>
-        </td>
-                         
-                    </tr>
-                  
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($produtos as $produto): ?>
+                <tr>
+                    <td><img src="<?= htmlspecialchars($produto['imagem_url']); ?>" alt="<?= htmlspecialchars($produto['nome']); ?>" class="produto-imagem"></td>
+                    <td><?= nl2br(htmlspecialchars($produto['descricao'])); ?></td>
+                    <td>R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></td>
+                    <td>
+                        <form action="adicionar_ao_carrinho.php" method="post">
+                            <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produto']); ?>">
+                            <button type="submit" class="adicionar-botao">Adicionar</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 <br>
 <br>
