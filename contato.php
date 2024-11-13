@@ -42,7 +42,7 @@ session_start()
             </div>
         </div>
     </div>
-    </header>
+    </header><br><br><br><br>
     <?php require './pages/rodapé.php'     ?>
 
     

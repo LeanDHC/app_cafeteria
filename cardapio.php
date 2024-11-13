@@ -39,19 +39,12 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </header>
 
     <table class="cardapio-tabela">
-        <thead>
-            <tr>
-                <th>Imagem</th>
-                <th>Descrição</th>
-                <th>Preço</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
+   
         <tbody>
             <?php foreach ($produtos as $produto): ?>
                 <tr>
                     <td><img src="<?= htmlspecialchars($produto['imagem_url']); ?>" alt="<?= htmlspecialchars($produto['nome']); ?>" class="produto-imagem"></td>
-                    <td><?= nl2br(htmlspecialchars($produto['descricao'])); ?></td>
+                    <td><?= '<strong>' . nl2br(htmlspecialchars($produto['nome'])) . '</strong>'; ?><br><?= nl2br(htmlspecialchars($produto['descricao'])); ?> </td>
                     <td>R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></td>
                     <td>
                         <form action="adicionar_ao_carrinho.php" method="post">
