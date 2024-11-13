@@ -2,201 +2,122 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    text-align: center;
 }
 
-/* Centraliza e estiliza o container */
+/* Centraliza e estiliza o container do carrinho */
 .carrinho-container {
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    text-align: center;
 }
 
-.carrinho-container h2 {
+/* Título do carrinho */
+h1 {
     color: #4e3427;
     margin-bottom: 20px;
 }
 
-/* Tabela de produtos */
-.carrinho-tabela {
+/* Estilo da tabela de itens do carrinho */
+table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
-.carrinho-tabela th, .carrinho-tabela td {
-    padding: 15px;
+table th,
+table td {
+    padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-.carrinho-tabela th {
+table th {
     background-color: #f4f4f4;
     font-weight: bold;
 }
 
-.carrinho-tabela td {
+table td {
     color: #4e3427;
     font-size: 1em;
 }
 
-/* Total do carrinho e botão de checkout */
-.carrinho-total {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-.checkout-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #4e3427;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.checkout-button:hover {
-    background-color: #3e291f;
-}
-/* Estilo da Tabela do Carrinho */
-.carrinho-tabela {
-    width: 80%; /* Ajuste a largura conforme necessário */
-    margin: 20px auto;
-    border-collapse: collapse;
-}
-
-.carrinho-tabela th, .carrinho-tabela td {
-    padding: 12px;
-    text-align: left;
-    vertical-align: middle;
-    border-bottom: 1px solid #ddd;
-}
-
-.carrinho-tabela th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.carrinho-tabela td {
-    font-size: 1em;
-    line-height: 1.5;
-}
-
-.carrinho-tabela td:last-child {
-    font-weight: bold;
-    color: #e74c3c;
-}
-
-.carrinho-tabela tr:hover {
-    background-color: #f9f9f9;
-}
-
-.carrinho-tabela button {
-    padding: 8px 16px;
-    background-color: #4e3427;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.carrinho-tabela button:hover {
-    background-color: #3e291f;
-}
-
-.atualizar-botao {
-    background-color: #ff9800;
-    margin-right: 10px;
-}
-
-.atualizar-botao:hover {
-    background-color: #e68900;
-}
-
-.remover-botao {
-    background-color: #f44336;
-}
-
-.remover-botao:hover {
-    background-color: #d32f2f;
-}
-
-/* Estilo do Total do Carrinho */
-.total-carrinho {
-    width: 80%;
-    margin: 20px auto;
-    text-align: right;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.finalizar-compra {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4e3427;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 20px;
-}
-
-.finalizar-compra:hover {
-    background-color: #3e291f;
-}
-/* Estilo do botão de Voltar para o Cardápio */
-.voltar-cardapio {
-    width: 80%;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.voltar-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4e3427;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 20px;
-}
-
-.voltar-btn:hover {
-    background-color: #3e291f;
-}
-/* Estilo do campo de quantidade */
-.carrinho-tabela input[type="number"] {
+table input[type="number"] {
     width: 50px;
     padding: 5px;
     text-align: center;
-    border-radius: 4px;
     border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-.carrinho-tabela td input[type="number"] {
-    font-size: 16px;
-}
-
-/* Botão de atualizar e remover */
-.atualizar-botao,
-.remover-botao {
-    padding: 8px 12px;
-    background-color: #4e3427;
-    color: white;
+/* Botões de ação (atualizar e remover) */
+button {
+    padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9em;
 }
 
-.atualizar-botao:hover,
-.remover-botao:hover {
+button[type="submit"] {
+    background-color: #4e3427;
+    color: white;
+}
+
+button[type="submit"]:hover {
     background-color: #3e291f;
+}
+
+form[action="remover_item.php"] button {
+    background-color: #f44336;
+}
+
+form[action="remover_item.php"] button:hover {
+    background-color: #d32f2f;
+}
+
+/* Total do carrinho e botão de finalizar compra */
+.total-container {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+a[href="finalizar_compra.php"],a[href="cardapio.php"]  {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4e3427;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+a[href="finalizar_compra.php"]:hover {
+    background-color: #3e291f;
+}
+
+
+
+
+.carrinho-vazio {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.carrinho-vazio img {
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+    opacity: 0.6;
+    margin-top: 10px;
+}
+
+.carrinho-vazio p {
+    font-size: 1.2em;
+    color: #4e3427;
+    margin-bottom: 10px;
 }

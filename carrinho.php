@@ -31,7 +31,7 @@ if ($pedido) {
     $itens = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } else {
-    echo "<p>Você não tem nenhum pedido em aberto.</p>";
+ 
     $itens = [];
 }
 
@@ -45,6 +45,7 @@ if ($pedido) {
     <link rel="stylesheet" href="../css/style-banner-menu.css">
     <link rel="stylesheet" href="../css/style-corpo.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/carrinho.css">
     <title>Carrinho de Compras</title>
    
 </head>
@@ -57,12 +58,16 @@ if ($pedido) {
         </div>
 
     </header>
+    <br><br><br>
     <h1>Carrinho de Compras</h1>
 
     <?php if (empty($itens)): ?>
+        <div class="carrinho-vazio">
         <p>Seu carrinho está vazio!</p>
-    <?php else: ?>
-        <form action="atualizar_quantidade.php" method="post">
+        <img src="images/carrinho_vazio.png" alt="Carrinho vazio">
+    </div>
+        <?php else: ?>
+        
             <table>
                 <thead>
                     <tr>
@@ -73,25 +78,31 @@ if ($pedido) {
                         <th>Ações</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <?php foreach ($itens as $item): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($item['nome']); ?></td>
-                            <td>
-                                <input type="number" name="quantidade[<?= $item['id_item']; ?>]" value="<?= $item['quantidade']; ?>" min="1" max="<?= $item['estoque_quantidade']; ?>" />
-                            </td>
-                            <td>R$ <?= number_format($item['preco_unitario'], 2, ',', '.'); ?></td>
-                            <td>R$ <?= number_format($item['total'], 2, ',', '.'); ?></td>
-                            <td>
-                                <button type="submit" name="atualizar" value="1">Atualizar</button>
-                                <form action="remover_item.php" method="POST">
-                                <input type="hidden" name="id_item" value="<?php echo $item['id_item']; ?>">
-                                <button type="submit" name="remover">Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
+                        <!-- Fomulario atualizar-->
+                <form action="atualizar_quantidade.php" method="post">
+            <tr>
+            <td><?= htmlspecialchars($item['nome']); ?></td>
+            <td>
+                <input type="number" name="quantidade[<?= $item['id_item']; ?>]" value="<?= $item['quantidade']; ?>" min="1" max="<?= $item['estoque_quantidade']; ?>" />
+            </td>
+            <td>R$ <?= number_format($item['preco_unitario'], 2, ',', '.'); ?></td>
+            <td>R$ <?= number_format($item['total'], 2, ',', '.'); ?></td>
+            <td>
+            
+                <button type="submit" name="atualizar" value="<?= htmlspecialchars($item['id_item']); ?>">Atualizar</button>
+                </form>
+                <!-- Formulário separado para remoção -->
+                <form action="remover_item.php" method="POST" style="display:inline;">
+                    <input type="hidden" name="id_item" value="<?= htmlspecialchars($item['id_item']); ?>">
+                    <button type="submit" name="remover">Remover</button>
+                </form>
+            </td>
+             </tr>
+            <?php endforeach; ?>
+            </tbody>
             </table>
 
             <div>
@@ -105,7 +116,8 @@ if ($pedido) {
                     echo number_format($totalPedido['total'], 2, ',', '.');
                     ?>
                 </h3>
-                <a href="finalizar_pedido.php">Finalizar Compra</a>
+                <a href="finalizar_compra.php">Finalizar Compra</a>
+                <a href="cardapio.php">Voltar ao cardápio</a>
             </div>
         </form>
     <?php endif; ?>

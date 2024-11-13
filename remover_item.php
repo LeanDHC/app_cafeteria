@@ -1,18 +1,13 @@
 <?php
 session_start();
 require_once 'includes/db.php'; // Conexão com o banco de dados
-print("ANTES DE ENTRAR NO IF");  
+
 // Verifica se o cliente está logado
 if (!isset($_SESSION['id_cliente'])) {
     header("Location: login.php");
     exit();
 }
-if (isset($_POST['id_item'])) {
-    $id_item = $_POST['id_item'];
-    error_log("ID do item recebido: " . $id_item);
-} else {
-    error_log("ID do item não recebido.");
-}
+
 
 if (isset($_POST['id_item'])) {
     $id_item = $_POST['id_item'];
@@ -36,7 +31,7 @@ if (isset($_POST['id_item'])) {
         $stmtVerificar->execute();
        
         if ($stmtVerificar->rowCount() > 0) {
-            error_log("Removendo item ID: " . $id_item . " do pedido ID: " . $pedidoId);
+          
             
             // Remover o item
 
@@ -46,18 +41,13 @@ if (isset($_POST['id_item'])) {
             $stmtRemover->bindParam(':id_pedido', $pedidoId, PDO::PARAM_INT);
 
             if ($stmtRemover->execute()) {
-                error_log("Item ID " . $id_item . " removido com sucesso do pedido ID " . $pedidoId);
+             
                 header("Location: carrinho.php"); // Redireciona após a remoção
                 exit();
-            } else {
-                error_log("Erro ao tentar remover o item ID " . $id_item . " do pedido ID " . $pedidoId);
-            }
-        } else {
-            error_log("Item ID " . $id_item . " não encontrado no pedido ID " . $pedidoId);
+            }  
         }
-    } else {
-        error_log("Nenhum pedido em aberto encontrado para o cliente ID " . $id_cliente);
     }
+     
 }
 
 
