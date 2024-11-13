@@ -37,7 +37,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
     </header>
-
+    <br><br><br>
     <table class="cardapio-tabela">
    
         <tbody>
@@ -49,7 +49,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td>
                         <form action="adicionar_ao_carrinho.php" method="post">
                             <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produto']); ?>">
-                            <button type="submit" class="adicionar-botao">Adicionar</button>
+                            <button type="submit" class="adicionar-btn">Adicionar</button>
                         </form>
                     </td>
                 </tr>

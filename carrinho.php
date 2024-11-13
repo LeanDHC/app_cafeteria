@@ -121,6 +121,8 @@ if ($pedido) {
             </div>
         </form>
     <?php endif; ?>
+    <br><br>
+    <?php require './pages/rodapé.php'     ?>
 
 </body>
 </html>

@@ -8,6 +8,8 @@ session_start();
     <title>Pedido Efetuado com Sucesso</title>
     <link rel="stylesheet" href="../css/style-sucesso.css">
     <script>
+
+        
         function alterarMensagem() {
             const mensagemElement = document.getElementById("mensagem");
             const contadorElement = document.getElementById("contador");
@@ -72,5 +74,8 @@ session_start();
     
     <!-- Botão que será alterado após o tempo de espera -->
     <a id="botao" class="button">Aguarde</a>
+    <br><br>
+   
 </body>
+
 </html>
