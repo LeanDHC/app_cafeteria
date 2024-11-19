@@ -1,0 +1,66 @@
+/* Configurações globais */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5dc; /* Fundo bege suave */
+    color: #5b3e2b; /* Texto em tom marrom escuro */
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    background: #8b5e3c; /* Marrom médio */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #fff; /* Texto branco */
+    font-size: 2.5em;
+    margin: 0;
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    justify-content: space-around;
+    background: #a47c5e; /* Marrom claro */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff; /* Texto branco */
+    font-weight: bold;
+    padding: 10px 20px;
+    background: #5b3e2b; /* Marrom escuro */
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.menu a:hover {
+    background: #402b1c; /* Marrom ainda mais escuro */
+}
+

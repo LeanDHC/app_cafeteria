@@ -1,0 +1,72 @@
+/* Estilo para o container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cabeçalho */
+h2 {
+    text-align: center;
+    color: #8b5e3c; /* Marrom escuro */
+    margin-bottom: 20px;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+thead tr {
+    background: #8b5e3c; /* Marrom escuro */
+    color: white;
+}
+
+thead th, tbody td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background: #f5f5dc; /* Bege claro */
+}
+
+tbody tr:nth-child(odd) {
+    background: #fff; /* Branco */
+}
+
+.alert {
+    padding: 10px;
+    background: #cce5ff; /* Azul claro */
+    color: #004085;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* Botões */
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.btn.atualizar {
+    background: #5b8c5a; /* Verde escuro */
+}
+
+.btn.remover {
+    background: #c75c5c; /* Vermelho */
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
