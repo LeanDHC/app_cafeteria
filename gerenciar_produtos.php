@@ -1,54 +1,52 @@
 <?php
 session_start();
-require 'includes/db.php'; // Conexão com o banco de dados
+require_once 'includes/db.php'; // Conexão com o banco de dados
 
-// Processa a remoção de cliente se o formulário de remoção for enviado
-if (isset($_POST['remover_cliente'])) {
-    $id_cliente = $_POST['id_cliente'];
-
-    try {
-        // Inicia a transação
-        $pdo->beginTransaction();
-
-        // Exclui o cliente da tabela "clientes"
-        $sql = "DELETE FROM clientes WHERE id_cliente = :id_cliente";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
-        $stmt->execute();
-
-        // Confirma a transação
-        $pdo->commit();
-
-        // Redireciona para a mesma página para atualizar a lista
-        header("Location: gerenciar_clientes.php");
-        exit();
-    } catch (PDOException $e) {
-        // Em caso de erro, faz o rollback da transação
-        $pdo->rollBack();
-        die("Erro ao remover cliente: " . $e->getMessage());
-    }
-}
-
-// Consulta para buscar os clientes
+// Consulta para buscar os produtos, incluindo a categoria
 try {
-    $sql = "SELECT id_cliente, nome, email, telefone, endereco FROM clientes";
+    $sql = "SELECT p.id_produto, p.nome, p.preco, p.estoque_quantidade, c.nome AS categoria, p.imagem_url 
+            FROM produtos p
+            JOIN categorias c ON p.id_categoria = c.id_categoria";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtém todos os registros
+    $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtém todos os registros
 } catch (PDOException $e) {
-    die("Erro ao buscar clientes: " . $e->getMessage());
+    die("Erro ao buscar produtos: " . $e->getMessage());
+}
+
+// Verifica se foi enviado o ID do produto para remoção
+if (isset($_POST['id_produto'])) {
+    $id_produto = $_POST['id_produto'];
+
+    // Realizar a remoção do produto
+    try {
+        $sqlRemover = "DELETE FROM produtos WHERE id_produto = :id_produto";
+        $stmtRemover = $pdo->prepare($sqlRemover);
+        $stmtRemover->bindParam(':id_produto', $id_produto, PDO::PARAM_INT);
+        
+        if ($stmtRemover->execute()) {
+            // Caso a remoção seja bem-sucedida, recarregue a página
+            header("Location: gerenciar_produtos.php"); // Redireciona para recarregar a página
+            exit();
+        } else {
+            echo "Erro ao remover produto.";
+        }
+    } catch (PDOException $e) {
+        die("Erro ao remover produto: " . $e->getMessage());
+    }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Clientes</title>
-    <link rel="stylesheet" href="../css/gerenciar_clientes.css">
+    <title>Gerenciar Produtos</title>
+    <link rel="stylesheet" href="../css/gerenciar_produtos.css">
     <link rel="stylesheet" href="../css/gerenciar_site.css">
     <style>
+        /* Seu CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -70,7 +68,7 @@ try {
             color: #8b5e3c;
         }
 
-        .btn-new-client {
+        .btn-new-product {
             display: inline-block;
             margin: 20px 0;
             padding: 10px 20px;
@@ -83,7 +81,7 @@ try {
             transition: background-color 0.3s;
         }
 
-        .btn-new-client:hover {
+        .btn-new-product:hover {
             background-color: #a76d4b;
         }
 
@@ -165,65 +163,71 @@ try {
 .actions .btn-remove:hover {
     background-color: #d32f2f;
 }
+
     </style>
 </head>
 <body>
 <div class="container">
+
     <header>
-        <nav class="menu">
+        <nav class="menu">      
             <ul>
                 <li><a href="gerenciar_clientes.php">Clientes</a></li>
                 <li><a href="gerenciar_produtos.php">Produtos</a></li>
                 <li><a href="gerenciar_pedidos.php">Pedidos</a></li>
                 <li><a href="index.php">Página Inicial</a></li>
             </ul>
-        </nav>
+        </nav>  
     </header>
 
-    <h1>Gerenciar Clientes</h1>
+    <h1>Gerenciar Produtos</h1>
 
-    <!-- Botão de Novo Cliente -->
-    <a href="novo_cliente.php" class="btn-new-client">Novo Cliente</a>
+    <!-- Botão de Novo Produto -->
+    <a href="novo_produto.php" class="btn-new-product">Novo Produto</a>
 
-    <!-- Tabela de Clientes -->
+    <!-- Tabela de Produtos -->
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Categoria</th>
+                <th>Imagem</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (count($clientes) > 0): ?>
-                <?php foreach ($clientes as $cliente): ?>
+            <?php if (count($produtos) > 0): ?>
+                <?php foreach ($produtos as $produto): ?>
                     <tr>
-                        <td><?= htmlspecialchars($cliente['id_cliente']); ?></td>
-                        <td><?= htmlspecialchars($cliente['nome']); ?></td>
-                        <td><?= htmlspecialchars($cliente['email']); ?></td>
-                        <td><?= htmlspecialchars($cliente['telefone']); ?></td>
-                        <td><?= htmlspecialchars($cliente['endereco']); ?></td>
+                        <td><?= htmlspecialchars($produto['id_produto']); ?></td>
+                        <td><?= htmlspecialchars($produto['nome']); ?></td>
+                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></td>
+                        <td><?= htmlspecialchars($produto['estoque_quantidade']); ?></td>
+                        <td><?= htmlspecialchars($produto['categoria']); ?></td>
+                        <td>
+                            <img src="<?= htmlspecialchars($produto['imagem_url']); ?>" alt="<?= htmlspecialchars($produto['nome']); ?>" width="50">
+                        </td>
                         <td class="actions">
-                            <a href="atualizar_cliente.php?id=<?= $cliente['id_cliente']; ?>" class="btn-update">Atualizar</a>
-                            
-                            <!-- Formulário de Remoção do Cliente -->
-                            <form action="gerenciar_clientes.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="id_cliente" value="<?= $cliente['id_cliente']; ?>">
-                                <button type="submit" name="remover_cliente" class="btn-remove" onclick="return confirm('Tem certeza que deseja remover este cliente?')">Remover</button>
+                            <a href="atualizar_produto.php?id=<?= $produto['id_produto']; ?>" class="btn-update">Atualizar</a>
+                            <!-- Formulário para remover produto -->
+                            <form action="" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_produto" value="<?= $produto['id_produto']; ?>">
+                                <button type="submit" class="btn-remove" onclick="return confirm('Tem certeza que deseja remover este produto?')">Remover</button>
                             </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="6">Nenhum cliente cadastrado.</td>
+                    <td colspan="7">Nenhum produto cadastrado.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
 </div>
+
 </body>
 </html>
