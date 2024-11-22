@@ -3,10 +3,10 @@ session_start();
 require_once 'includes/db.php'; // Conexão com o banco de dados
 
 // Verifica se o cliente está logado
-if (!isset($_SESSION['id_cliente'])) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isset($_SESSION['id_cliente'])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 $id_cliente = $_SESSION['id_cliente'];
 
