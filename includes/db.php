@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$db = 'cafeteria_app';
-$user = 'root';
-$pass = 'gokudb12S*';
+// $host = '';
+// $db = '';
+// $user = '';
+// $pass = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
